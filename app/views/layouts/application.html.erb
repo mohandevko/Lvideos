@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vtest</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= render :partial => "layouts/javascripts" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id="background">
+      <div class="bg-overlay"></div><!-- end .bg-overlay  section -->
+      <div class="stretch-image one"></div><!-- end .stretch image section -->
+    </div><!-- end #background section -->
+
+    <div class="full-wrapper header">
+      <div class="grid-wrapper">
+        <div id="header">
+          <div class="row">
+            <div class="header-left left clear">
+              <h3 id="logo"><a href="/">( Logo )</a></h3>
+              <div id="searchbar">
+                <div class="search-wrapper">
+                  <form>
+                    <input type="text" name="search" placeholder="Search..." title="Search..."  class="blink"  />
+                    <button><i class="icon-search"></i></button>
+                  </form>
+                </div><!-- .search-wrapper -->
+              </div><!-- end .search-bar section -->
+            </div><!-- end .header-left section -->
+            <div class="header-right right clear">
+              <div class="profi userx">
+                <div class="profi-pic"><%= current_user.avatar.blank? ? image_tag("profi.jpg") : image_tag(current_user.avatar(:thumb)) %></div><!-- end .profi-pic section -->
+                <div class="profi-name"><span><%= link_to current_user.username,"/user_accounts/#{current_user.id}" %></span></div><!-- end section -->
+                <ul style="width:136px;">
+                  <li><%= link_to 'Logout',destroy_user_session_path,:method => :delete %></li>
+                  <li><%= link_to "Account Settings",edit_user_account_path(current_user) %></li>
+                  <li class="sep">Joined: <%= current_user.created_at.strftime("%b %d,%Y") %></li>
+                </ul>	
+              </div><!-- end .profi-name section -->
+              <a href="/videos/new" class="vid-button"><i class="icon-facetime-video"></i> Upload new video </a>
+            </div><!-- end .header-right section -->
+          </div><!-- end .row section -->
+        </div><!-- end #header section -->
+      </div><!-- end .grid-wrapper section -->
+    </div><!-- end .full-wrapper .header section -->
+    <% ['notice', 'error', 'warning','alert'].each do |f|%>
+      <% if flash[f.to_sym] %>
+        <div class="<%= f %>"><%=  flash[f.to_sym] %></div>
+      <% end %>
+    <% end %>
+    <%= yield %>
+    <%= render :partial => "layouts/login" %>
+    <% if params[:controller] != "user_accounts" and params[:action] != 'show' %>
+      <div class="foot" style="background: white;">
+        <div class="grid-wrapper">
+          <div class="bottom-footer">
+            <ul>
+              <li> &copy; 2013 </li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Terms &amp; Conditions</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div><!-- .bottom-footer -->        
+        </div><!-- end .grid-wrapper section -->
+      </div><!-- end .full-wrapper section -->
+      <div></div><!-- end section -->
+    <% end %>
+    <script type="text/javascript" src="/assets/popup.min.js"></script>
+    <script type="text/javascript" src="/assets/init-popup.js"></script> 
+    <style>
+      .bottom-footer ul li a{
+        color:black;
+      }
+      .bottom-footer ul li{
+        color:black;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<div class="full-wrapper">
+
+  <div class="grid-wrapper">
+    <div class="px-wraps">
+      <div class="row">
+        <div class="col5 fist">
+          <%= image_tag("mobi.png") %>
+        </div><!-- end .col4 section -->
+        <div class="col7 last">
+          <div class="headerx">
+            <h3 class="large-header">Test</h3>
+            <h5 class="small-header">test small</h5>
+          </div>
+          <div class="normal-header"><h2>Hello what yeah what yeah what</h2></div><!-- .normal-header -->
+        </div><!-- end .col7 section -->
+      </div><!-- end .row section -->
+    </div><!-- end .px-wraps section -->
+
+    <div class="shop-buttons-holder">
+      <a href="#" class="shop-btn apple"><i></i><span><em>Download on the</em><strong>App Store</strong></span></a>
+      <a href="#" class="shop-btn googl"><i></i><span><em>Coming soon</em><strong>Google Play</strong></span></a>
+    </div><!-- end shop-buttons-holder section -->
+
+    <div class="fbk"><a href="#">10,089 people like this.</a></div><!-- end .fbk section -->
+
+  </div><!-- end section -->
+
+</div><!-- end .full-wrapper .landing-content section -->
+<script>
+  jQuery("#test-form").bind("ajax:complete", function(a, b) {
+    jQuery("#login-error-message").html();
+
+    if (b.statusText == "error") {
+      jQuery("#login-error-message").html(b.responseText);
+    } else {
+      jQuery("#login-error-message").html(b.responseText);
+    }
+  });
+</script>

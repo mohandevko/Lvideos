@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vtest</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= render :partial => "layouts/javascripts" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id="background">
+      <div class="bg-overlay"></div><!-- end .bg-overlay  section -->
+      <div class="stretch-image two"></div><!-- end .stretch image section -->
+    </div><!-- end #background section -->
+
+    <div class="full-wrapper header">
+      <div class="grid-wrapper">
+        <div id="header">
+          <div class="row">
+            <div class="header-left left clear">
+              <h3 id="logo"><a href="/">( Logo )</a></h3>
+              <% if current_user %>
+                <div id="searchbar">
+                  <div class="search-wrapper">
+                    <form>
+                      <input type="text" name="search" value="Search..." title="Search..."  class="blink"  />
+                      <button><i class="icon-search"></i></button>
+                    </form>
+                  </div><!-- .search-wrapper -->
+                </div><!-- end .search-bar section -->
+              <% end %>
+            </div><!-- end .header-left section -->
+            <div class="header-right right clear">
+              <% if current_user %>
+                <div class="profi">
+                  <div class="profi-pic"><%= current_user.avatar.blank? ? image_tag("profi.jpg") : image_tag(current_user.avatar(:thumb)) %></div><!-- end .profi-pic section -->
+                  <div class="profi-name"><span><%= link_to current_user.username,edit_user_account_path(current_user) %></span></div><!-- end section -->	
+                </div><!-- end .profi-name section -->
+                <a href="/videos" class="vid-button"><i class="icon-facetime-video"></i> Upload new video </a>
+                <%= link_to 'Log out',destroy_user_session_path,:method => :delete,:class => "vid-button login popup-with-form" %>
+              <% else %>
+                <a class="vid-button login popup-with-form" href="#test-form">Log in </a>
+              <% end %>
+            </div><!-- end .header-right section -->
+          </div><!-- end .row section -->
+        </div><!-- end #header section -->
+      </div><!-- end .grid-wrapper section -->
+    </div>
+    <% ['notice', 'error', 'warning','alert'].each do |f|%>
+      <% if flash[f.to_sym] %>
+        <div class="<%= f %>"><%=  flash[f.to_sym] %></div>
+      <% end %>
+    <% end %>
+    <%= yield %>
+    <%= render :partial => "layouts/login" %>
+    <div class="full-wrapper foot">
+      <div class="grid-wrapper">
+        <div class="bottom-footer">
+          <ul>
+            <li> &copy; 2013 </li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Terms &amp; Conditions</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div><!-- .bottom-footer -->        
+      </div><!-- end .grid-wrapper section -->
+    </div><!-- end .full-wrapper section -->
+    <div></div><!-- end section -->
+    <script type="text/javascript" src="/assets/popup.min.js"></script>
+    <script type="text/javascript" src="/assets/init-popup.js"></script>  
+  </body>
+</html>

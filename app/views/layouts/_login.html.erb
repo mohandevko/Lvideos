@@ -1,0 +1,50 @@
+<div class="full-wrapper">
+
+  <div class="example gc3">
+
+    <!-- form itself -->
+    <%= form_for resource, :as => resource_name, :url => session_path(resource_name),:html =>{:id => "test-form",:class => "mfp-hide white-popup-block"},:remote => true do |f| %>
+      <p>Login</p><p> Don't have an account yet? <%= link_to 'Sign up',new_user_account_path %></p>
+      <div class="social-btns">
+        <a href="/auth/twitter" class="tws"><i></i><span>Twitter</span></a>
+        <a href="/auth/facebook" class="fbs"><i></i><span>Facebook</span></a>
+      </div><!-- social buttons -->
+      <div id="login-error-message"></div>
+      <fieldset class="login-form" style="border:0;">
+        <ol>
+          <li>
+            <label class="append-icon">
+              <%= f.text_field :login,:id => "username",:class => "inputs",:autofocus => true,:placeholder => "usernae" %>
+              <span><i class="icon-user"></i></span>
+            </label>
+          </li>
+          <li>
+            <label class="append-icon">
+              <%= f.password_field :password,:class => "inputs",:id => "password",:placeholder => "password" %>
+              <span><i class="icon-key"></i></span>
+            </label>
+          </li>
+          <li class="lower">
+            <label for="rmb" class="option">
+              <input id="rmb" type="checkbox" checked>
+              <span class="checkbox"></span>        
+            </label>
+            <label for="rmb" class="rpw">Remember Password</label> 
+
+          </li>
+          <%= f.submit "Sign in",:class => "buttonx pos"%>
+        </ol>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+<script>
+  jQuery("#test-form").bind("ajax:complete", function(a, b) {
+    jQuery("#login-error-message").html();
+    if (b.status == "401") {
+      jQuery("#login-error-message").css({"color": "red", "font-size": "12px"}).html(b.responseText);
+    } else {
+      window.location.href = '/';
+    }
+  });
+</script>

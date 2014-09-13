@@ -1,0 +1,49 @@
+
+<div class="ac-wrapper">
+  <div class="settings-form">
+    <div class="ac-stig"><h2>Sign in</h2>
+
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <div class="fm-row">
+          <div class="row">
+            <div class="col4 first"><label class="lbl-fmx">Email Address</label></div><!-- end .col4 section -->	
+            <div class="col8 last">
+              <div class="row">
+                <%= f.text_field :login,:placeholder => "username",:class => "input-ui fluid" %>
+              </div><!-- end .row section -->	
+            </div><!-- end .col8 section -->	
+          </div><!-- end .row section -->	
+        </div><!-- end .fm-row section -->
+
+        <div class="fm-row">
+          <div class="row">
+            <div class="col4 first"><label class="lbl-fmx">Password</label></div><!-- end .col4 section -->	
+            <div class="col8 last">
+              <div class="row">
+                <%= f.password_field :password,:class => "input-ui fluid" %>
+              </div><!-- end .row section -->	
+            </div><!-- end .col8 section -->	
+          </div><!-- end .row section -->	
+        </div><!-- end .fm-row section -->
+
+        <% if devise_mapping.rememberable? -%>
+          <div class="fm-row">
+            <div class="row">
+              <div class="col4 first"><label class="lbl-fmx">Remember Me</label></div><!-- end .col4 section -->	
+              <div class="col8 last">
+                <div class="row">
+                  <%= f.check_box :remember_me %>
+                </div><!-- end .row section -->	
+              </div><!-- end .col8 section -->	
+            </div><!-- end .row section -->	
+          </div><!-- end .fm-row section -->
+          <div>
+          <% end -%>
+          <br/>
+          <%= f.submit "Sign in",:class => "buttonx pos",:style => "position:relative;float:right;"%>
+        <% end %>
+        <br/><br/>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>

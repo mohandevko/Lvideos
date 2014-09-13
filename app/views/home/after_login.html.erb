@@ -1,0 +1,67 @@
+<div class="full-wrapper header-text">
+  <div class="grid-wrapper">
+    <div id="header-text">
+      <div> <span>Account Settings </span><a href="#">Nice</a> </div>
+    </div><!-- end #header-text section -->
+  </div><!-- end .grid-wrapper section -->
+</div><!-- end .full-wrapper .header-text section -->
+
+<div class="full-wrapper">
+  <div class="grid-wrapper">
+    <div id="landing-content" style="padding-top: 20px;">
+      <div class="inner-pad">
+
+        <div class="vidr-container">
+          <div class="vid-flip">
+            <div id="vid1" class="vidsect show">
+              <div class="multi-vid clear">
+                <% j = 3 %>
+                <% i = 0 %>
+                <% @videos.each do |video| %>
+                  <% i+=1 %>
+                  <div class="landing-vid <%= i == j ? "lastr" : nil %>">
+                    <div class="landing-vid-inner">
+                      <div class="pix-vid">
+                        <a href="/videos/<%= video.id %>">
+                          <%= image_tag(video.video(:large)) %>
+                          <span class="vid-play"></span>
+                        </a>
+                        <div class="name-title"><h5><%= video.video_title %></h5></div><!-- end .name-title section -->
+                      </div><!-- end .pix-vid section -->
+                      <div class="vid-details">
+                        <div class="vid-caps clear">
+                          <div class="caps-pic"><%= video.user.avatar.blank? ? image_tag("profi.jpg",:width => "50px",:height => "50px") : image_tag(video.user.avatar(:thumb),:width => "50px",:height => "50px") %></div><!-- end .caps-pic section -->
+                          <div class="caps-text">
+                            <span class="creator">Created by:</span>
+                            <span class="person"><%= video.user.username %></span>
+                          </div><!-- end .caps-text section -->	
+                        </div><!-- end .vid-caps section -->
+                        <div class="vid-stats">
+                          <ul>
+                            <li><i class="icon-eye-open"></i><span>250</span></li>
+                            <li><i class="icon-comment"></i><span>3</span></li>
+                            <li><i class="icon-heart"></i><span>37</span></li>
+                          </ul>
+                        </div><!-- end .vid-stats section -->
+                      </div><!-- end .vid-details section -->
+
+                    </div><!-- end #landing-vid-inner section -->
+                  </div><!-- end #landing-vid section -->
+                  <% if i == j %><% j+=3 %><div style="clear: both; padding-top: 25px;"></div><% end %>
+                <% end %>
+              </div><!-- end multi-vid section -->
+
+            </div>
+
+          </div>
+
+        </div><!-- end vidr-container -->              
+      </div><!-- end .inner-pad -->    
+    </div><!-- end section -->
+  </div><!-- end .full-wrapper .landing-content section -->
+</div>
+
+<div></div><!-- end section -->
+<script type="text/javascript" src="/assets/video.js"></script> 
+<script type="text/javascript" src="/assets/videojs-playlists.js"></script> 
+<script type="text/javascript" src="/assets/init-video.js"></script>

@@ -1,0 +1,65 @@
+<div class="ac-wrapper">
+  <div class="settings-form">
+    <div class="ac-stig">
+      <%= form_for @user,:url => user_accounts_path(@user) do |f| %>
+        <% if @user.errors.any? %>
+          <ul style='position:relative;left:44px;width:400px;'>
+            <% @user.errors.each do |attr,msg| %>
+              <li style='color:red;list-style-type: disc;'><%= attr %>&nbsp;<%= msg %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <div class="fm-row">
+          <div class="row">
+            <div class="col4 first"><label class="lbl-fmx">Username</label></div><!-- end .col4 section -->	
+            <div class="col8 last">
+              <div class="row">
+                <div class="col3 first svn-rgt vcr">
+                  <label class="lbtm"></label>
+                </div><!-- end col6 section -->
+                <div class="row">
+                  <%= f.text_field :username,:placeholder => "enter your full name..",:class => "input-ui fluid" %>
+                </div><!-- end .col6 section -->	
+              </div><!-- end .row section -->	
+            </div><!-- end .col8 section -->	
+          </div><!-- end .row section -->	
+        </div><!-- end .fm-row section --> 
+        <div class="fm-row">
+          <div class="row">
+            <div class="col4 first"><label class="lbl-fmx">Email Address</label></div><!-- end .col4 section -->	
+            <div class="col8 last">
+              <div class="row">
+                <%= f.email_field :email,:placeholder => "enter your email address..",:class => "input-ui fluid" %>
+              </div><!-- end .row section -->	
+            </div><!-- end .col8 section -->	
+          </div><!-- end .row section -->	
+        </div><!-- end .fm-row section -->
+        <div class="fm-row">
+          <div class="row">
+            <div class="col4 first"><label class="lbl-fmx">Password</label></div><!-- end .col4 section -->	
+            <div class="col8 last">
+              <div class="row">
+                <%= f.password_field :password,:class => "input-ui fluid" %>
+              </div><!-- end .row section -->	
+            </div><!-- end .col8 section -->	
+          </div><!-- end .row section -->	
+        </div><!-- end .fm-row section -->
+        <div class="fm-row">
+          <div class="row">
+            <div class="col4 first"><label class="lbl-fmx">Confirm Password</label></div><!-- end .col4 section -->	
+            <div class="col8 last">
+              <div class="row">
+                <%= f.password_field :password_confirmation,:class => "input-ui fluid" %>
+              </div><!-- end .row section -->	
+            </div><!-- end .col8 section -->	
+          </div><!-- end .row section -->	
+        </div><!-- end .fm-row section -->
+        <div class="fm-buttons clear">
+          <a class="xbutn" href='/'>Cancel</a>
+          <input class="xbutn red" type="submit" value="Create" />
+        </div><!-- end section -->  
+      </div><!-- end section -->
+    <% end %>
+  </div><!-- end .settings-forms section -->
+</div><!-- end .ac-wrapper section -->
+<div></div><!-- end section -->

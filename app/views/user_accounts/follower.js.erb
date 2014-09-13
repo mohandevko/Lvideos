@@ -1,0 +1,3 @@
+$("#follow_link").html('<%= @follow == false ? (link_to 'Follow',follower_user_account_path(:id => @user.id,:follow => true),:method => :post,:remote => true,:class=>"follow") :(link_to 'Unfollow',follower_user_account_path(:id => @user.id,:follow => false),:method => :post,:remote => true,:class=>"follow") %>');
+$("#followers").html('<%= @followers %>')
+$("#following").html('<%= @followings %>')

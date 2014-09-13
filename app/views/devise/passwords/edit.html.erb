@@ -1,0 +1,36 @@
+<div class="ac-wrapper">
+  <div class="settings-form">
+    <div class="ac-stig"><h2>Change your password</h2>
+
+      <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.hidden_field :reset_password_token %>
+        <div class="fm-row">
+          <div class="row">
+            <div class="col4 first"><label class="lbl-fmx">New password</label></div><!-- end .col4 section -->	
+            <div class="col8 last">
+              <div class="row">
+                <%= f.password_field :password, :autofocus => true,:class => "input-ui fluid" %>
+              </div><!-- end .row section -->	
+            </div><!-- end .col8 section -->	
+          </div><!-- end .row section -->	
+        </div><!-- end .fm-row section -->
+        <div class="fm-row">
+          <div class="row">
+            <div class="col4 first"><label class="lbl-fmx">Confirm new password</label></div><!-- end .col4 section -->	
+            <div class="col8 last">
+              <div class="row">
+                <%= f.password_field :password_confirmation,:class => "input-ui fluid" %>
+              </div><!-- end .row section -->	
+            </div><!-- end .col8 section -->	
+          </div><!-- end .row section -->	
+        </div><!-- end .fm-row section -->
+        <br />
+
+        <div><%= f.submit "Change my password",:class => "buttonx pos",:style => "position:relative;" %></div>
+      <% end %>
+      <br/>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

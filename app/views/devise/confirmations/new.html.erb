@@ -1,0 +1,25 @@
+<div class="ac-wrapper">
+  <div class="settings-form">
+    <div class="ac-stig"><h2>Resend confirmation instructions</h2>
+
+      <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+        <%= devise_error_messages! %>
+        <div class="fm-row">
+          <div class="row">
+            <div class="col4 first"><label class="lbl-fmx">Email Address</label></div><!-- end .col4 section -->	
+            <div class="col8 last">
+              <div class="row">
+                <%= f.email_field :email, :autofocus => true,:class => "input-ui fluid" %>
+              </div><!-- end .row section -->	
+            </div><!-- end .col8 section -->	
+          </div><!-- end .row section -->	
+        </div><!-- end .fm-row section -->
+        <br />
+
+        <div><%= f.submit "Resend confirmation instructions",:class => "buttonx pos",:style => "position:relative;" %></div>
+      <% end %>
+      <br/>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

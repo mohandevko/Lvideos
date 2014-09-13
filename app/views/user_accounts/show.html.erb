@@ -1,0 +1,127 @@
+<div class="full-wrapper header-text3">
+  <div class="grid-wrapper">
+    <div class="inner-pad">
+      <div class="topsy clear">
+        <div class="topsy-l">
+          <div class="prom">
+            <div class="pro-imager"><%= @user.avatar.blank? ? image_tag("dani.png") : image_tag(@user.avatar,:width => "60",:height => "60") %></div><!-- end .pro-imager section -->
+            <div class="pro-textr">
+              <div class="psoc">
+                <h3><%= @user.username %></h3>
+                <% if @fb %><a href="#"><%= image_tag("facebook.png") %></a><% end %>
+                <% if @tw %><a href="#"><%= image_tag("twitter.png") %></a><% end %>	
+                <% if @li %><a href="#"><%= image_tag("icn1.png",:width=>"38",:height => "38") %></a><% end %>		
+              </div>
+              <div class="pxc">
+                <div><span><strong><%= @user.username %> </strong> - pro surfer (web) + crative director + husband</span></div>
+                <div><span><a href="#"><%= @user.website %></a></span></div>
+              </div>
+            </div><!-- end .pro-textr section -->
+          </div><!-- end .prom section -->
+        </div><!-- end .topsy-l section -->
+        <div class="topsy-r">
+          <ul>
+            <li class="fr">
+              <h3 id="followers"><%= @followers %></h3>
+              <span>followers</span>
+            </li>
+            <li>
+              <h3 id="following"><%= @followings %></h3>
+              <span>following</span>
+            </li>
+            <li>
+              <h3><%= @user.videos.count %></h3>
+              <span>videos</span>
+            </li>
+            <% if current_user.id != @user.id %>
+              <li>
+                <h3 id="follow_link"><%= @follow == false ? (link_to 'Follow',follower_user_account_path(:id => @user.id,:follow => true),:method => :post,:remote => true,:class=>"follow") :(link_to 'Unfollow',follower_user_account_path(:id => @user.id,:follow => false),:method => :post,:remote => true,:class=>"follow") %></h3>
+                <span></span>
+              </li>
+            <% end %>
+          </ul>
+        </div><!-- end .topsy-r section -->
+      </div><!-- end .topsy section -->
+      <div></div><!-- end section -->
+    </div><!-- end .inner-pad section -->
+  </div><!-- end .grid-wrapper section -->
+</div><!-- end .full-wrapper .header-text section -->
+<div class="full-wrapper">
+  <div class="grid-wrapper">
+    <div class="inner-pad">
+
+      <div class="vidr-container">
+        <div class="vid-flip">
+          <ul class="tabs clear">
+            <li><a href="#vid1" class="active">Vids 1</a></li>
+            <li><a href="#vid2">Vids 2</a></li>
+            <li><a href="#vid3">Vids 3</a></li>
+          </ul>
+          <div id="vid1" class="vidsect show">
+            <div class="multi-vid clear">
+              <% j = 3 %>
+              <% i = 0 %>
+              <% @user.videos.each do |video| %>
+                <% i+=1 %>
+                <div class="landing-vid <%= i == j ? "lastr" : nil %>">
+                  <div class="landing-vid-inner">
+                    <div class="pix-vid">
+                      <a href="/videos/<%= video.id %>">
+                        <%= image_tag(video.video(:large)) %>
+                        <span class="vid-play"></span>
+                      </a>
+                      <div class="name-title"><h5><%= video.video_title %></h5></div><!-- end .name-title section -->
+                    </div><!-- end .pix-vid section -->
+                    <div class="vid-details">
+                      <div class="vid-caps clear">
+                        <div class="caps-pic"><%= video.user.avatar.blank? ? image_tag("profi.jpg",:width => "50px",:height => "50px") : image_tag(video.user.avatar(:thumb),:width => "50px",:height => "50px") %></div><!-- end .caps-pic section -->
+                        <div class="caps-text">
+                          <span class="creator">Created by:</span>
+                          <span class="person"><%= video.user.username %></span>
+                        </div><!-- end .caps-text section -->	
+                      </div><!-- end .vid-caps section -->
+                      <div class="vid-stats">
+                        <ul>
+                          <li><i class="icon-eye-open"></i><span>250</span></li>
+                          <li><i class="icon-comment"></i><span>3</span></li>
+                          <li><i class="icon-heart"></i><span>37</span></li>
+                        </ul>
+                      </div><!-- end .vid-stats section -->
+                    </div><!-- end .vid-details section -->
+
+                  </div><!-- end #landing-vid-inner section -->
+                </div><!-- end #landing-vid section -->
+                <% if i == j %><% j+=3 %><div style="clear: both; padding-top: 25px;"></div><% end %>
+              <% end %>
+            </div><!-- end multi-vid section -->
+
+            <div class="steps-vid">
+
+              <div class="vid-thumbs">
+                <ul>
+                  <% @user.videos.limit(4).each do |video| %>
+                    <li><%= image_tag(video.video(:large)) %><span class="title"><%= video.video_title %></span></li>
+                  <% end %>
+                </ul>
+
+                <div class="button-holder">
+                  <%= image_tag("prev.png",:id => "prev",:alt=>"Previous video") %>
+                  <%= image_tag("next.png",:id => "next",:alt=>"Next video") %>                            
+                </div>
+
+              </div>
+            </div><!-- steps-vid -->
+
+          </div>
+
+        </div>
+
+      </div><!-- end vidr-container -->              
+    </div><!-- end .inner-pad -->    
+  </div><!-- end section -->
+</div><!-- end .full-wrapper .landing-content section -->
+
+<div></div><!-- end section -->
+<script type="text/javascript" src="/assets/video.js"></script> 
+<script type="text/javascript" src="/assets/videojs-playlists.js"></script> 
+<script type="text/javascript" src="/assets/init-video.js"></script>  

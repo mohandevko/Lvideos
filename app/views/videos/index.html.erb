@@ -1,0 +1,46 @@
+<div class="full-wrapper header-text">
+  <div class="grid-wrapper">
+    <div id="header-text">
+      <div> <span>Name of video </span><a href="#">Watch</a> </div>
+    </div><!-- end #header-text section -->
+  </div><!-- end .grid-wrapper section -->
+</div><!-- end .full-wrapper .header-text section -->
+
+<div class="full-wrapper">
+  <div id="vid-wrapper">
+
+    <div class="darkern">
+      <div class="video-holder">                   
+        <div class="vid-holder">
+          <video id="video" class="video-js vjs-default-skin" width="100%" height="100%"
+                 controls preload="auto" 
+                 data-setup=''
+                 poster="">
+          </video><!-- video-holder -->
+        </div><!-- vid-holder -->
+      </div><!-- video-holder -->
+    </div><!-- end .darkern section -->
+    <div class="headr-text"><h2>(Information Header Text)</h2></div><!-- header info text -->
+    <div class="playlist-components">
+
+      <div class="playlist">
+        <ul>
+        </ul>
+      </div>
+
+      <div class="button-holder">
+        <%= image_tag("prev.png",:id => "prev",:alt=>"Previous video") %>
+        <%= image_tag("next.png",:id => "next",:alt=>"Next video") %>
+      </div>
+      <!-- playlist-components -->
+
+
+    </div><!-- vid-wrapper -->        
+  </div><!-- end .full-wrapper .landing-content section -->
+
+  <div></div><!-- end section -->
+
+  <!-- Load Javascript -->
+  <script type="text/javascript" src="/assets/video.js"></script> 
+  <script type="text/javascript" src="/assets/videojs-playlists.js"></script> 
+  <script type="text/javascript" src="/assets/init-video.js"></script>  
